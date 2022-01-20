@@ -154,6 +154,19 @@ app.put("/api/updateMovie/:mid", (req, res) => {
   });
 });
 
+app.post("/api/addTheatreToMovie", (req, res) => {
+  const mid = req.body.selectedMovie;
+  const tid = req.body.theatreCheck;
+
+  const sql = "INSERT INTO mhast (m_id,t_id) VALUES (?,?)";
+  db.query(sql, [mid, tid], (err, result) => {
+    console.log(result);
+    if (!err) {
+      res.send({ message: "added TheatreToMovie" });
+    }
+  });
+});
+
 app.listen(3002, () => {
   console.log("server is running");
 });

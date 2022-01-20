@@ -8,6 +8,13 @@ const AdminMovie = () => {
   const [movieList, setMovieList] = useState([]);
   const [editType, setEditType] = useState(false);
   const [theatreList, setTheatreList] = useState([]);
+  const [theatreCheck, setTheatreCheck] = useState([]);
+
+  const handleCheckBox = (tid) => {
+    if (!theatreCheck.includes(tid)) {
+      setTheatreCheck([...theatreCheck, tid]);
+    }
+  };
 
   const addMovie = async (e) => {
     if (state.movieName && state.overview && state.rating && state.imageUrl) {
@@ -56,7 +63,7 @@ const AdminMovie = () => {
   }, []);
 
   const updateMovie = () => {
-    console.log("update", state.movieName);
+    // console.log("update", state.movieName);
     if (state.movieName && state.overview && state.rating && state.imageUrl) {
       axios
         .put(`http://localhost:3002/api/updateMovie/${state.mid}`, {
@@ -110,9 +117,43 @@ const AdminMovie = () => {
     });
   };
 
+  const addTheatreToMovie = (e) => {
+    e.preventDefault();
+    console.log(theatreCheck.length);
+    if (state.selectedMovie && theatreCheck.length) {
+      theatreCheck.map((tid, index) =>
+        axios
+          .post("http://localhost:3002/api/addTheatreToMovie", {
+            selectedMovie: state.selectedMovie,
+            theatreCheck: tid,
+          })
+          .then((response) => {
+            // alert(response.data.message);
+            if (
+              response.data.message === "added TheatreToMovie" &&
+              index == theatreCheck.length - 1
+            ) {
+              alert(response.data.message);
+            } else {
+              console.log("error");
+            }
+          })
+      );
+      setTheatreCheck([]);
+    }
+  };
+
   return (
     <div className="adminMovie">
-      <form class="w-50">
+      <form
+        class="w-50"
+        style={{
+          boxShadow: "0px 10px 10px -5px rgba(0,0,0,0.5)",
+          padding: "10px",
+          backgroundColor: "white",
+          marginTop: "1rem",
+        }}
+      >
         <div class="form-group row my-3">
           <label for="movieName" class="col-sm-2 col-form-label">
             Movie name
@@ -204,7 +245,14 @@ const AdminMovie = () => {
         </div>
       </form>
 
-      <div className="movieList">
+      <div
+        className="movieList"
+        style={{
+          boxShadow: "0px 10px 10px -5px rgba(0,0,0,0.5)",
+          padding: "10px",
+          backgroundColor: "white",
+        }}
+      >
         <h3>Movie List</h3>
         <table class="table">
           <thead class="thead-dark">
@@ -268,7 +316,14 @@ const AdminMovie = () => {
         </table>
       </div>
 
-      <form class="w-50 m-5">
+      <form
+        class="w-50 m-5"
+        style={{
+          boxShadow: "0px 10px 10px -5px rgba(0,0,0,0.5)",
+          padding: "10px",
+          backgroundColor: "white",
+        }}
+      >
         <div class="form-group my-4">
           <select
             class="form-control"
@@ -278,7 +333,7 @@ const AdminMovie = () => {
             }}
           >
             {movieList.map((movie) => (
-              <option key={movie.m_id} value={movie.m_name}>
+              <option key={movie.m_id} value={movie.m_id}>
                 {movie.m_name}
               </option>
             ))}
@@ -287,14 +342,15 @@ const AdminMovie = () => {
 
         <fieldset class="form-group">
           <div class="row">
-            <legend class="col-form-label col-sm-2 pt-0">Theatres</legend>
+            <legend class="col-form-label col-sm-2 pt-0">Theatre</legend>
             <div class="col-sm-10">
               {theatreList.map((theatre) => (
                 <div class="form-check">
                   <input
                     class="form-check-input"
                     type="checkbox"
-                    value=""
+                    value={theatre.t_id}
+                    onChange={(e) => handleCheckBox(e.target.value)}
                     id="defaultCheck1"
                   />
 
@@ -308,7 +364,11 @@ const AdminMovie = () => {
         </fieldset>
         <div class="form-group row ">
           <div class="col-sm-10 my-3">
-            <button type="submit" class="btn btn-primary">
+            <button
+              // type="submit"
+              class="btn btn-primary"
+              onClick={addTheatreToMovie}
+            >
               ADD THEATRE TO MOVIE
             </button>
           </div>
