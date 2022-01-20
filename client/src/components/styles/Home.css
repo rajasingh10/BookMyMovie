@@ -1,0 +1,78 @@
+.home {
+  background-color: gray;
+  height: 100%;
+}
+.header {
+  display: flex;
+  background-color: rgb(41, 40, 40);
+  justify-content: space-between;
+  padding: 20px;
+  background-color: burlywood;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+.header_center {
+  color: rgb(0, 0, 0);
+  margin: 0;
+}
+.header_right {
+  display: flex;
+  align-items: center;
+}
+.logout_btn {
+  border-radius: 20px;
+  border: none;
+  background: #8d2222;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 5px 15px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.logout_btn:hover {
+  box-shadow: -2px 1px 7px 0px rgba(71, 69, 69, 0.5);
+}
+
+.myBooking {
+  text-decoration: none;
+  color: white;
+  margin-right: 1rem;
+  background: #8d2222;
+  padding: 5px 15px;
+}
+.myBooking:hover {
+  color: white;
+  box-shadow: -2px 1px 7px 0px rgba(71, 69, 69, 0.5);
+}
+.myBooking > p {
+  margin: 0;
+}
+.moviecontainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.book_btn {
+  border-radius: 2px;
+  border: none;
+  background: #8d2222;
+  color: #ffffff;
+  font-size: 1.5vw;
+  font-weight: bold;
+  padding: 5px 15px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.book_btn:hover {
+  box-shadow: -2px 1px 7px 0px rgba(71, 69, 69, 0.5);
+}
+.adminHome {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}

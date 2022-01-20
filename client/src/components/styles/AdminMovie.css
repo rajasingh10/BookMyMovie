@@ -1,0 +1,9 @@
+.adminMovie {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.movieList {
+  width: 70%;
+  margin: 1rem;
+}

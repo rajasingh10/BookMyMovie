@@ -1,0 +1,58 @@
+.movie {
+  cursor: pointer;
+  position: relative;
+  background: rgb(180, 179, 179);
+  margin: 1rem;
+  width: 250px;
+  border-radius: 3px;
+  box-shadow: 1px 1px 11px -2px black;
+  overflow: hidden; /* for hidding movie-overview overflow due to transform*/
+}
+.movie img {
+  object-fit: contain;
+  width: 100%;
+  height: 375px;
+}
+.movie-info {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.movie-info > h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.movie-overview {
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  background-color: burlywood;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  transition: transform 0.4s ease-in-out;
+  transform: translatey(100%);
+}
+
+.movie:hover .movie-overview {
+  transform: translatey(0%);
+}
+.vote {
+  background-color: rgb(226, 224, 198);
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-weight: bold;
+}
+.vote.green {
+  color: green;
+}
+.vote.orange {
+  color: rgb(253, 135, 92);
+}
+.vote.red {
+  color: rgb(185, 0, 0);
+}

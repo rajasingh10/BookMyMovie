@@ -1,0 +1,9 @@
+.adminTheatre {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.theatreList {
+  width: 70%;
+}
