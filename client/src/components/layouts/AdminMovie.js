@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "../styles/AdminMovie.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AdminMovie = () => {
   const [state, setState] = useState({});
@@ -10,9 +12,30 @@ const AdminMovie = () => {
   const [theatreList, setTheatreList] = useState([]);
   const [theatreCheck, setTheatreCheck] = useState([]);
 
-  const handleCheckBox = (tid) => {
-    if (!theatreCheck.includes(tid)) {
+  const notify = (type, msg) => {
+    if (type == "error") {
+      toast.error(msg, {
+        position: "top-center",
+      });
+    }
+    if (type == "success") {
+      toast.success(msg, {
+        position: "top-center",
+      });
+    }
+  };
+
+  const handleCheckBox = (tid, chk) => {
+    if (!theatreCheck?.includes(tid)) {
       setTheatreCheck([...theatreCheck, tid]);
+    }
+    if (!chk) {
+      var array = [...theatreCheck];
+      const index = array.indexOf(tid);
+      if (index > -1) {
+        array.splice(index, 1);
+        setTheatreCheck(array);
+      }
     }
   };
 
@@ -28,10 +51,11 @@ const AdminMovie = () => {
         .then((response) => {
           // alert(response.data.message);
           if (response.data.message === "movie added") {
-            alert(response.data.message);
+            // alert(response.data.message);
+            notify("success", response.data.message);
             getMovieList();
           } else {
-            console.log("error");
+            notify("error", response.data.message);
           }
         });
     }
@@ -42,10 +66,11 @@ const AdminMovie = () => {
       .delete(`http://localhost:3002/api/MovieDelete/${mid}`)
       .then((response) => {
         if (response.data.message === "movie deleted") {
-          alert(response.data.message);
+          // alert(response.data.message);
+          notify("error", response.data.message);
           getMovieList();
         } else {
-          console.log("error");
+          notify("error", response.data.message);
         }
       });
   };
@@ -76,7 +101,8 @@ const AdminMovie = () => {
           // alert(response.data.message);
           console.log(response);
           if (response.data.message === "movie updated") {
-            alert(response.data.message);
+            // alert(response.data.message);
+            notify("success",response.data.message)
             getMovieList();
             setEditType(false);
             setState({
@@ -88,7 +114,7 @@ const AdminMovie = () => {
               imageUrl: "",
             });
           } else {
-            console.log("error");
+            notify("error",response.data.message)
           }
         });
     }
@@ -133,13 +159,13 @@ const AdminMovie = () => {
               response.data.message === "added TheatreToMovie" &&
               index == theatreCheck.length - 1
             ) {
-              alert(response.data.message);
+              // alert(response.data.message);
+              notify("success",response.data.message)
             } else {
-              console.log("error");
+              notify("error",response.data.message)
             }
           })
       );
-      setTheatreCheck([]);
     }
   };
 
@@ -332,6 +358,9 @@ const AdminMovie = () => {
               setState({ ...state, selectedMovie: e.target.value });
             }}
           >
+            <option selected value="">
+              Select Movie
+            </option>
             {movieList.map((movie) => (
               <option key={movie.m_id} value={movie.m_id}>
                 {movie.m_name}
@@ -350,7 +379,9 @@ const AdminMovie = () => {
                     class="form-check-input"
                     type="checkbox"
                     value={theatre.t_id}
-                    onChange={(e) => handleCheckBox(e.target.value)}
+                    onChange={(e) =>
+                      handleCheckBox(e.target.value, e.target.checked)
+                    }
                     id="defaultCheck1"
                   />
 

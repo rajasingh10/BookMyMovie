@@ -46,12 +46,12 @@ function HomeCarousel() {
               alt="slider image"
               style={{ width: "100vw", height: "400px" }}
             />
-            <Carousel.Caption>
+            {/* <Carousel.Caption>
               <Link to="/theatre">
                 <button className="book_btn">Book</button>
               </Link>
               <p>{slide.description}</p>
-            </Carousel.Caption>
+            </Carousel.Caption> */}
           </Carousel.Item>
         );
       })}

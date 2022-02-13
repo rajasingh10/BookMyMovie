@@ -1,0 +1,20 @@
+.buytickets {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #a83a3a;
+}
+.movie_poster {
+  width: 700px;
+  height: 400px;
+}
+.movie_heading {
+  background-color: rgb(177, 176, 176);
+  width: 700px;
+  text-align: center;
+  padding: 5px;
+}
+.react-datepicker-wrapper {
+  width: 10% !important;
+  margin: 1rem !important;
+}

@@ -8,71 +8,7 @@ import allActions from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 
-const moviesdetail = [
-  {
-    mid: 1,
-    title: "Spider-Man: No Way Home",
-    overview:
-      "Peter Parker is unmasked and no longer able to separate his normal life from the high-stakes of being a super-hero. When he asks for help from Doctor Strange the stakes become even more dangerous, forcing him to discover what it truly means to be Spider-Man.",
-    poster_path:
-      "https://image.tmdb.org/t/p/w1280/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg",
-    vote_average: 8.4,
-  },
-  {
-    mid: 2,
-    title: "The Matrix Resurrections",
-    overview:
-      "Plagued by strange memories, Neo's life takes an unexpected turn when he finds himself back inside the Matrix.",
-    poster_path:
-      "https://image.tmdb.org/t/p/w1280/8c4a8kE7PizaGQQnditMmI1xbRp.jpg",
-    vote_average: 8.4,
-  },
-  {
-    mid: 3,
-    title: "Spider-Man: No Way Home",
-    overview:
-      "Peter Parker is unmasked and no longer able to separate his normal life from the high-stakes of being a super-hero. When he asks for help from Doctor Strange the stakes become even more dangerous, forcing him to discover what it truly means to be Spider-Man.",
-    poster_path:
-      "https://image.tmdb.org/t/p/w1280/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg",
-    vote_average: 8.4,
-  },
-  {
-    mid: 4,
-    title: "The Matrix Resurrections",
-    overview:
-      "Plagued by strange memories, Neo's life takes an unexpected turn when he finds himself back inside the Matrix.",
-    poster_path:
-      "https://image.tmdb.org/t/p/w1280/8c4a8kE7PizaGQQnditMmI1xbRp.jpg",
-    vote_average: 8.4,
-  },
-  {
-    mid: 5,
-    title: "Spider-Man: No Way Home",
-    overview:
-      "Peter Parker is unmasked and no longer able to separate his normal life from the high-stakes of being a super-hero. When he asks for help from Doctor Strange the stakes become even more dangerous, forcing him to discover what it truly means to be Spider-Man.",
-    poster_path:
-      "https://image.tmdb.org/t/p/w1280/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg",
-    vote_average: 8.4,
-  },
-  {
-    mid: 6,
-    title: "The Matrix Resurrections",
-    overview:
-      "Plagued by strange memories, Neo's life takes an unexpected turn when he finds himself back inside the Matrix.",
-    poster_path:
-      "https://image.tmdb.org/t/p/w1280/8c4a8kE7PizaGQQnditMmI1xbRp.jpg",
-    vote_average: 8.4,
-  },
-  {
-    mid: 7,
-    title: "Spider-Man: No Way Home",
-    overview:
-      "Peter Parker is unmasked and no longer able to separate his normal life from the high-stakes of being a super-hero. When he asks for help from Doctor Strange the stakes become even more dangerous, forcing him to discover what it truly means to be Spider-Man.",
-    poster_path:
-      "https://image.tmdb.org/t/p/w1280/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg",
-    vote_average: 8.4,
-  },
-];
+
 
 const Home = () => {
   const [userType, setUserType] = useState(true);

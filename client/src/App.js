@@ -6,6 +6,9 @@ import Register from "./components/layouts/Register";
 import AdminMovie from "./components/layouts/AdminMovie";
 import AdminTheatre from "./components/layouts/AdminTheatre";
 import AdminUsers from "./components/layouts/AdminUsers";
+import BuyTickets from "./components/layouts/BuyTickets";
+import MyBooking from "./components/layouts/MyBooking";
+import { ToastContainer, toast } from "react-toastify";
 
 function App() {
   return (
@@ -18,7 +21,10 @@ function App() {
           <Route path="/adminMovie" component={AdminMovie} />;
           <Route path="/adminTheatre" component={AdminTheatre} />;
           <Route path="/adminuUsers" component={AdminUsers} />;
+          <Route path="/buytickets" component={BuyTickets} />;
+          <Route path="/myBooking" component={MyBooking} />;
         </Switch>
+        <ToastContainer />
       </div>
     </Router>
   );

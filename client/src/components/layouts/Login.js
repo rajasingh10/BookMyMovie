@@ -6,10 +6,24 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import allActions from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   // const currentUser = useSelector((state) => state.currentUser);
   const dispatch = useDispatch();
+  const notify = (type, msg) => {
+    if (type == "error") {
+      toast.error(msg, {
+        position: "top-center",
+      });
+    }
+    if (type == "success") {
+      toast.success("Logged In", {
+        position: "top-center",
+      });
+    }
+  };
 
   const history = useHistory();
   const handleSignIn = () => {
@@ -20,7 +34,7 @@ const Login = () => {
   // const [loginUser, setLoginUser] = useState("");
 
   const check_login = async () => {
-    console.log("login");
+    // console.log("login");
     if (emailLog && passwordLog) {
       axios
         .post("http://localhost:3002/check-log", {
@@ -28,12 +42,16 @@ const Login = () => {
           password: passwordLog,
         })
         .then((response) => {
-          // alert(response.data.message);
           if (response.data.message === "LogedIn") {
+            // alert(response.data.message);
+            notify("success", response.data.message);
+            // console.log(response.data.data[0]);
             dispatch(allActions.userActions.setUser(response.data.data[0]));
+
             handleSignIn();
           } else {
-            alert(response.data.message);
+            // alert(response.data.message);
+            notify("error", response.data.message);
           }
         });
     }

@@ -75,4 +75,9 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  background-image: url(https://mcdn.wallpapersafari.com/medium/27/58/IWMx2a.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0 0;
+  height: 100vh;
 }

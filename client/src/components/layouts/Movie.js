@@ -17,6 +17,7 @@ const countvote = (rating) => {
 
 const Movie = ({ mid, title, overview, poster_path, vote_average }) => {
   const dispatch = useDispatch();
+  const currentUser = useSelector((state) => state.currentUser);
 
   const handleBooking = () => {
     dispatch(allActions.movieActions.setMovie(mid));
@@ -32,11 +33,18 @@ const Movie = ({ mid, title, overview, poster_path, vote_average }) => {
         </span>
       </div>
       <div className="movie-overview">
-        <Link to="/theatre">
-          <button className="book_btn" onClick={handleBooking}>
-            Book
-          </button>
-        </Link>
+        {currentUser.loggedIn ? (
+          <Link to="/buytickets">
+            <button className="book_btn" onClick={handleBooking}>
+              Book
+            </button>
+          </Link>
+        ) : (
+          <Link to="/login">
+            <button className="book_btn">Book</button>
+          </Link>
+        )}
+
         <h2>Overview:</h2>
         <p>{overview}</p>
       </div>

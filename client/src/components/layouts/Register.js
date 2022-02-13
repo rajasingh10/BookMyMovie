@@ -3,14 +3,29 @@ import "bootstrap/dist/css/bootstrap.min.css"; // npm install react-bootstrap bo
 import "../styles/Register.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
   const [usernameReg, setUsernameReg] = useState("");
   const [emailReg, setEmailReg] = useState("");
   const [passwordReg, setPasswordReg] = useState("");
 
+  const notify = (type, msg) => {
+    if (type == "error") {
+      toast.error(msg, {
+        position: "top-center",
+      });
+    }
+    if (type == "success") {
+      toast.success(msg, {
+        position: "top-center",
+      });
+    }
+  };
+
   const register = () => {
-    console.log("register");
+    // console.log("register");
     if (usernameReg && emailReg && passwordReg) {
       axios
         .post("http://localhost:3002/register", {
@@ -19,7 +34,8 @@ const Register = () => {
           password: passwordReg,
         })
         .then((response) => {
-          alert(response.data.message);
+          notify("success", response.data.message);
+          // alert(response.data.message);
         });
     }
   };
@@ -34,7 +50,8 @@ const Register = () => {
         .then((response) => {
           const message = response.data.message;
           if (message === "Already") {
-            alert("Already register");
+            // alert("Already register");
+            notify("error", message);
           }
 
           if (message === "New Registration") {
